@@ -1,12 +1,11 @@
 const player = {};
+let orbs = [];
 
-const wWidth = $(window).width;
-const wHeight = $(window).height;
 
 const canvas = document.querySelector('#the-canvas');
 const context = canvas.getContext('2d');
-canvas.width = wWidth;
-canvas.height = wHeight;
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
 $(window).load(() => {
     $('#loginModal').modal('show');
@@ -23,4 +22,5 @@ $('.name-form').submit(event => {
 $('.start-game').click(event => {
     $('.modal').modal('hide');
     $('.hiddenOnStart').removeAttr('hidden');
+    init();
 });
