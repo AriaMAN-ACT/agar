@@ -119,7 +119,7 @@ canvas{
 }
 
 .btn-github{
-    background-image: url("/images/GitHub-Mark-Light-32px.png") !important;
+    background-image: url("../images/GitHub-Mark-Light-32px.png") !important;
     color: #fff;
     background-color: #444;
     border-color: rgba(0,0,0,0.2);
@@ -226,4 +226,22 @@ canvas{
     background-color: #e600e6;
     margin: auto;
     opacity: 0;
+}
+
+#the-canvas {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+#game-field {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
 }
