@@ -6,7 +6,7 @@ const socketEvents = require('../models/socketEvents');
 let orbs = [];
 
 const initGame = () => {
-    for (let i = 0; i < 500; i++) {
+    for (let i = 0; i < 2000; i++) {
         orbs.push(new Orb());
     }
 };
