@@ -1,11 +1,12 @@
-const player = {};
-let orbs = [];
-
-
 const canvas = document.querySelector('#the-canvas');
 const context = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
+
+window.addEventListener('resize', event => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
 
 $(window).load(() => {
     $('#loginModal').modal('show');

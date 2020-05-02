@@ -1,3 +1,4 @@
 module.exports = {
-    init: 'init'
+    init: 'init',
+    initReturn: 'initReturn'
 };

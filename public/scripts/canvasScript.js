@@ -1,7 +1,3 @@
-const init = () => {
-    draw();
-};
-
 player.locX = Math.floor(10000 * Math.random());
 player.locY = Math.floor(10000 * Math.random());
 
