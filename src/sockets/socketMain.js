@@ -1,12 +1,13 @@
 const io = require('../server');
 
 const Orb = require('../models/Orb');
-const socketEvents = require('../models/socketEvents');
 const Player = require('../models/Player');
 const PlayerConfig = require('../models/PlayerConfig');
 const PlayerData = require('../models/PlayerData');
+const socketEvents = require('../models/socketEvents');
 
 let orbs = [];
+let players = [];
 const settings = {
     orbsCount: 2500,
     defaultSpeed: 10,
@@ -24,11 +25,15 @@ const initGame = () => {
 
 initGame();
 
+setInterval(() => {
+}, 33);
+
 io.on('connect', socket => {
     socket.on(socketEvents.init, playerName => {
         const playerConfig = new PlayerConfig(settings);
         const playerData = new PlayerData(playerName, settings);
         const player = new Player(socket.id, playerConfig, playerData);
+        players.push(playerData);
         socket.emit(socketEvents.initReturn, {
             orbs,
             player

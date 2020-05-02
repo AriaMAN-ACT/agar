@@ -23,8 +23,6 @@ canvas.addEventListener('mousemove',(event)=>{
         }
     }
 
-    console.log(centerX, centerY);
-
     const speed = 10;
     const angle = getAngleDeg(event.clientX, event.clientY, centerX, centerY);
     if (angle === 90) {
