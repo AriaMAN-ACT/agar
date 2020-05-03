@@ -47,6 +47,10 @@ io.on('connect', socket => {
         socket.on('tick', data => {
             player.playerData.locX += Math.cos(data * Math.PI / 180) * player.playerConfig.speed;
             player.playerData.locY += Math.sin(data * Math.PI / 180) * player.playerConfig.speed;
+            let capturedOrb = checkForOrbCollisions(player.playerData, player.playerConfig, orbs, settings);
+            capturedOrb.then(data => {
+                io.sockets.emit('orbSwitch', new Orb(settings))
+            }).catch(() => {});
         });
     });
 });
