@@ -27,46 +27,39 @@ canvas.addEventListener('mousemove',(event)=>{
     const angle = getAngleDeg(event.clientX, event.clientY, centerX, centerY);
     if (angle === 90) {
         if (event.clientY < window.innerHeight / 2) {
-            player.locY -= speed;
+            socket.emit('tick', 270);
         } else {
-            player.locY += speed;
+            socket.emit('tick', 90);
         }
     } else if (angle === 0) {
         if (event.clientX < window.innerWidth / 2) {
-            player.locX -= speed;
+            socket.emit('tick', 180);
         } else {
-            player.locX += speed;
+            socket.emit('tick', 0);
         }
     } else if (angle > 0) {
         if (event.clientY < window.innerHeight / 2) {
-            const virtualAngle = angle + 180;
-            player.locX += Math.cos(virtualAngle * Math.PI / 180) * speed;
-            player.locY += Math.sin(virtualAngle * Math.PI / 180) * speed;
+            socket.emit('tick', 180 + angle);
         } else {
-            player.locX += Math.cos(angle * Math.PI / 180) * speed;
-            player.locY += Math.sin(angle * Math.PI / 180) * speed;
+            socket.emit('tick', angle);
         }
     } else {
         if (event.clientX < window.innerWidth / 2) {
-            const virtualAngle = angle + 90;
-            player.locX -= Math.sin(virtualAngle * Math.PI / 180) * speed;
-            player.locY += Math.cos(virtualAngle * Math.PI / 180) * speed;
+            socket.emit('tick', angle + 90);
         } else {
-            const virtualAngle = angle + 270;
-            player.locX -= Math.sin(virtualAngle * Math.PI / 180) * speed;
-            player.locY += Math.cos(virtualAngle * Math.PI / 180) * speed;
+            socket.emit('tick', angle + 270);
         }
     }
 
-    if (player.locX > 10000) {
-        player.locX = 10000;
-    } else if (player.locX < 0) {
-        player.locX = 0;
-    }
-
-    if (player.locY > 10000) {
-        player.locY = 10000;
-    } else if (player.locY < 0) {
-        player.locY = 0;
-    }
+    // if (player.locX > 10000) {
+    //     player.locX = 10000;
+    // } else if (player.locX < 0) {
+    //     player.locX = 0;
+    // }
+    //
+    // if (player.locY > 10000) {
+    //     player.locY = 10000;
+    // } else if (player.locY < 0) {
+    //     player.locY = 0;
+    // }
 });

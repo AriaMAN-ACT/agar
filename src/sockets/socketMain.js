@@ -26,17 +26,26 @@ const initGame = () => {
 initGame();
 
 setInterval(() => {
+    io.to('game').emit(socketEvents.tock, {
+        players
+    });
 }, 33);
 
 io.on('connect', socket => {
+    let player;
     socket.on(socketEvents.init, playerName => {
+        socket.join('game');
         const playerConfig = new PlayerConfig(settings);
         const playerData = new PlayerData(playerName, settings);
-        const player = new Player(socket.id, playerConfig, playerData);
+        player = new Player(socket.id, playerConfig, playerData);
         players.push(playerData);
         socket.emit(socketEvents.initReturn, {
             orbs,
             player
+        });
+        socket.on('tick', data => {
+            player.playerData.locX += Math.cos(data * Math.PI / 180) * player.playerConfig.speed;
+            player.playerData.locY += Math.sin(data * Math.PI / 180) * player.playerConfig.speed;
         });
     });
 });

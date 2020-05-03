@@ -38,12 +38,14 @@ const draw =() => {
         drawOrb(orb);
     });
 
-    drawOrb({
-        color: 'rgb(0, 255, 255)',
-        strokeColor: 'rgb(0, 255, 125)',
-        locX: player.locX,
-        locY: player.locY,
-        radius: 20
+    players.forEach(player => {
+        drawOrb({
+            color: player.color,
+            strokeColor: player.strokeColor,
+            locX: player.locX,
+            locY: player.locY,
+            radius: player.radius
+        });
     });
 
     requestAnimationFrame(draw);

@@ -1,6 +1,4 @@
-const player = {};
-let orbs = [];
-let players = [];
+
 
 const socket = io.connect('http://localhost:3000');
 
@@ -12,4 +10,9 @@ const init = () => {
 
 socket.on('initReturn', data => {
     orbs = data.orbs;
+    player = data.player;
+});
+
+socket.on('tock', data => {
+    players = data.players;
 });
